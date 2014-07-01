@@ -1,0 +1,12 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                 		        controllers.FacebookMock.index
+GET 	/facebook/me/async				controllers.FacebookMock.facebookAsync(access_token)
+GET 	/facebook/me/sync				controllers.FacebookMock.facebookSync(access_token)
+GET 	/facebook/me/asyncScheduler		controllers.FacebookMock.facebookAsyncScheduler(access_token)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
