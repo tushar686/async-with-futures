@@ -20,7 +20,13 @@ object FacebookMock extends Controller {
   	if (access_token == null) {
       BadRequest("access token must be provided")
     } 
-    Ok(getMockResponse)
+  	val mockResponse = getMockResponse
+  	
+  	Future {
+  		println(s"Sending Response: $mockResponse")
+  	}
+  	
+    Ok(mockResponse)
   }
   
   def facebookAsync(access_token : String) = Action.async {
@@ -42,7 +48,7 @@ object FacebookMock extends Controller {
     val mockResponseF = getMockResponseScheduler;
 
     mockResponseF.map { mockResponse =>
-      println(s"Sending Response: $mockResponse")
+      Future {println(s"Sending Response: $mockResponse") }
       Ok(mockResponse)
     }
   }
